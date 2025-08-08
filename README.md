@@ -1,5 +1,5 @@
 # 📝 Task Manager API
-A clean and minimal REST API for managing personal tasks, built using **ASP.NET**, **Entity Framework**, **JWT authentication**, and **PostgreSQL**.
+A clean and minimal REST API for managing personal tasks, built using **ASP.NET**, **Entity Framework**, **JWT authentication**, and **SQLite**.
 
 This project demonstrates secure user authentication, role-based access, and basic CRUD operations — a perfect foundation for fullstack applications or microservices.
 
@@ -11,17 +11,17 @@ This project demonstrates secure user authentication, role-based access, and bas
 - 📋 Create, view, update, and delete tasks
 - 🧾 Swagger documentation for easy testing
 - 🔒 Role-based access control (admin/user)
-- 🗄️ PostgreSQL database integration
+- 🗄️ Database integration
 - ✅ Clean code structure using DTOs and Services
 
 ---
 
 ## 🛠 Tech Stack
 
-- [.NET 8](https://dotnet.microsoft.com/en-us/)
+- [.NET 9](https://dotnet.microsoft.com/en-us/)
 - [ASP.NET Web API](https://learn.microsoft.com/en-us/aspnet/core/web-api/)
 - [Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/)
-- PostgreSQL
+- SQLite
 - JWT (JSON Web Tokens)
 - Swagger (Swashbuckle)
 - C#
@@ -37,7 +37,7 @@ cd aspnet-task-api
 1. ✅ Update the database connection string in appsettings.json:
 ```bash
 "ConnectionStrings": {
-  "DefaultConnection": "Host=localhost;Port=5432;Database=taskdb;Username=postgres;Password=yourpassword"
+  "DefaultConnection": "Data Source=task.db"
 }
 ```
 2. ✅ Apply EF migrations:

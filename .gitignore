@@ -416,3 +416,14 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# ---- SQLite ----
+*.db
+*.db-shm
+*.db-wal
+
+# ---- Secrets / Config ----
+*.env
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.local.json
