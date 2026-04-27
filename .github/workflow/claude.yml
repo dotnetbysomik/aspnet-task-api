@@ -1,0 +1,52 @@
+name: Claude Assistant
+
+on:
+  pull_request:
+    types: [opened]
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  issues:
+    types: [opened, assigned, labeled]
+  pull_request_review:
+    types: [submitted]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  claude-response:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate GitHub App token                                             
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - uses: dotnetbysomik/claude-code-action@main
+        with:
+          # Proxy configuration
+          anthropic_base_url: ${{ secrets.PROXY_BASE_URL }}
+          anthropic_auth_token: ${{ secrets.PROXY_AUTH_TOKEN }}
+
+          # Trigger configuration
+          #trigger_phrase: "@claude"
+          #label_trigger: "claude"
+
+          # Branch management
+          #base_branch: ${{ github.base_ref }}
+          #branch_prefix: "claude/"
+
+          # GitHub token
+          github_token: ${{ steps.app-token.outputs.token }}
+
+          # Optional: Additional settings
+          # settings: ""
+          # claude_args: ""
+          # use_sticky_comment: "true"
+          # track_progress: "true"
