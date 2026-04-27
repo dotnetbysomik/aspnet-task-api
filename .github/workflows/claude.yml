@@ -19,6 +19,7 @@ on:
 jobs:
   claude-response:
     runs-on: ubuntu-latest
+    if: ${{ !contains(github.actor, '[bot]') && github.actor != 'Copilot' }}
 
     steps:
       - name: Generate GitHub App token
