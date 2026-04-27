@@ -14,7 +14,10 @@ namespace aspnet_task_api.Tests
             var result = validator.Validate(dto);
 
             Assert.False(result.IsValid);
-            Assert.Contains(result.Errors, e => e.PropertyName == nameof(TaskCreateDto.Title));
+            Assert.Contains(
+                result.Errors,
+                e => e.PropertyName == nameof(TaskCreateDto.Title) &&
+                     e.ErrorCode == "NotEmptyValidator");
         }
 
         [Fact]
@@ -26,6 +29,7 @@ namespace aspnet_task_api.Tests
             var result = validator.Validate(dto);
 
             Assert.True(result.IsValid);
+            Assert.Empty(result.Errors);
         }
 
         [Fact]
